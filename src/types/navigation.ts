@@ -4,4 +4,5 @@ export type RootStackParamList = {
   Settings: undefined;
   ExpensesMain: undefined;
   AddExpenses: undefined;
+  TripExpenses: undefined;
 };
