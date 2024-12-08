@@ -20,7 +20,7 @@ const ExpensesScreen = () => {
       })
     );
     }else{
-      
+
     }
   };
   
@@ -38,7 +38,7 @@ const ExpensesScreen = () => {
           <TextInput
             style={{ padding: 12, borderWidth: 0.2, borderRadius: 20, marginBottom: 10 }}
             value={country}
-            onChangeText={setCountry}
+            onChangeText={ setCountry}
           />
           <Text style={{ fontSize: 25, fontWeight: 'bold', marginBottom: 10 }}>Which State</Text>
           <TextInput
@@ -48,7 +48,7 @@ const ExpensesScreen = () => {
           />
         </View>
         <View style={{ marginHorizontal: 18, marginTop: 18 }}>
-          <Text style={{ color: 'grey', fontSize: 18, fontWeight: '500' }}>Add your expense by opening it from Home screen</Text>
+          <Text style={{ color: 'grey', fontSize: 18, fontWeight: '500' }}>Add your expense by opening Trip from Home screen</Text>
         </View>
       </View>
       <View>
