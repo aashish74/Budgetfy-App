@@ -6,7 +6,9 @@ const IMAGES = {
     EMPTY : require('./empty.png'),
     4: require('./4.png'),
     BACK: require('./back.png'),
-    EXPENSEBANNER : require('./expenseBanner.png')
+    EXPENSEBANNER : require('./expenseBanner.png'),
+    LOGIN : require('./login.png'),
+    WELCOME: require('./welcome.png')
 }
 
 export default IMAGES;

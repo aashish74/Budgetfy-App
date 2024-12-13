@@ -3,6 +3,9 @@ import React from 'react'
 import IMAGES from '../assets/images';
 import randomImage from '../assets/randomImage';
 import EmptyList from '../components/emptyList';
+import { useNavigation } from '@react-navigation/native';
+import { RootStackParamList } from '../types/navigation';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 var items = [
   {
@@ -27,7 +30,11 @@ var items = [
   }
 ]
 
+type Props = NativeStackNavigationProp<RootStackParamList>;
+
 export default function HomeScreen() {
+  const navigation = useNavigation<Props>();
+
   return (
     <View style = {{backgroundColor: '#fff'}}>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 10 }}>
@@ -52,7 +59,7 @@ export default function HomeScreen() {
           <Text style={{ fontSize: 22, fontWeight: 'bold' }}>Recent Trips</Text>
         </View>
         <View style = {{height:500}}>
-          <FlatList
+        <FlatList
             data={items}
             numColumns={2}
             ListEmptyComponent={<EmptyList />}
@@ -64,8 +71,12 @@ export default function HomeScreen() {
             style = {{marginHorizontal:5,}}
             renderItem={({ item }) => {
               return (
-                <TouchableOpacity style={{
-                  backgroundColor: 'white', marginBottom: 10, padding: 25, borderRadius: 20, shadowColor: 'black',
+                <TouchableOpacity
+                onPress={() => navigation.navigate('TripExpenses', {
+                  place: item.place,
+                  country: item.country
+                })}
+                style={{backgroundColor: 'white', marginBottom: 10, padding: 25, borderRadius: 20, shadowColor: 'black',
                   shadowOpacity: 0.26,
                   shadowOffset: { width: 0, height: 2 },
                   shadowRadius: 10,
@@ -89,116 +100,3 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React from 'react';
-// import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-
-// const HomeScreen = () => {
-//   return (
-//     <View>
-//       <View style = {styles.header1}>
-//           <View>
-//           <Text style = {styles.wb}>Welcome Back!</Text>
-//           <Text style = {styles.name}>Aashish Bhardwaj</Text>
-//         </View>
-//         <View style = {styles.header_right}>
-//           <Text style = {styles.A} >A</Text>
-//         </View>
-//       </View>
-
-//       <View style = {styles.header2} >                                                  
-//         <View>
-//           <Text style = {{fontSize:23, fontWeight:'500', paddingBottom:3}} >Total Balance</Text>
-//           <Text style = {{fontSize:20, fontWeight:'400', textAlign:'center'}} >$1200</Text>
-//         </View>
-//         <View>
-//           <Text style = {{fontSize:23, fontWeight:'500', paddingBottom:3}} >Total Expenditure</Text>
-//           <Text style = {{fontSize:20, fontWeight:'400', textAlign:'center'}} >$890</Text>
-//         </View>
-//       </View>
-
-//       <View style = {styles.header3} >
-//         <Text style = {{fontSize:17}} >Recent Transactions</Text>
-//         <TouchableOpacity>
-//           <Text style = {{color:'#8a2be2', fontSize:17, paddingRight:4}} >See All</Text>
-//         </TouchableOpacity>
-//       </View>
-
-//     </View>  
-//   );
-// };
-
-// const styles = StyleSheet.create({
-//   header1:{ 
-//     flexDirection:'row', 
-//     justifyContent:'space-between',
-//     padding:10,
-//     marginTop:5,
-//     },
-//   header_right:{
-//     backgroundColor:'#8a2be2',
-//     width:50,
-//     height:50,
-//     borderRadius:'50%',
-//     marginTop:10,
-//     marginRight:10 
-//   },
-//   name:{
-//     fontSize:20, 
-//     fontWeight:'400',
-//   },
-//   wb:{
-//     fontSize:33,
-//     fontWeight:'500',
-//     paddingTop:5,
-//     paddingBottom:3
-//   },
-//   A:{
-//     fontSize:32,
-//     textAlign:'center',
-//     color:'white'
-//   },
-//   header2:{
-//     flexDirection:'row',
-//     padding:10,
-//     justifyContent:'space-between',
-//     marginTop:12,
-//     // backgroundColor:'rgba(52, 52, 52, 0.1)'
-//   },
-//   header3:{
-//     flexDirection:'row',
-//     padding:10,
-//     justifyContent:'space-between',
-//     marginTop:15,
-//     backgroundColor:'rgba(52, 52, 52, 0.1)'
-//   },
-// });
-
-// export default HomeScreen;
