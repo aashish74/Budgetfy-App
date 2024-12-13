@@ -33,7 +33,7 @@ const ExpensesScreen = () => {
             style={{ height: 350, width: 350 }}
           />
         </View>
-        <View style={{ marginHorizontal: 10 }}>
+        <View style={{ marginHorizontal: 15 }}>
           <Text style={{ fontSize: 25, fontWeight: 'bold', marginBottom: 10 }}>Which Country</Text>
           <TextInput
             style={{ padding: 12, borderWidth: 0.2, borderRadius: 20, marginBottom: 10 }}

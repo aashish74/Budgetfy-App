@@ -27,7 +27,7 @@ function TabNavigator() {
         component={HomeScreen}
         options={{
           tabBarIcon:({focused}) => (
-              <Image source={IMAGES.HOME} style = {{height:35, width: 35, tintColor: focused ? 'blue': 'grey' }} />
+              <Image source={IMAGES.HOME} style = {{height:30, width: 30, tintColor: focused ? 'blue': 'grey' }} />
           ),
         }}
       />
@@ -36,7 +36,7 @@ function TabNavigator() {
         component={ExpensesScreen}
         options={{
           tabBarIcon:({focused}) => (
-              <Image source={IMAGES.PLUS} style = {{height:35, width:35, tintColor: focused ? 'blue': 'grey'}}/>
+              <Image source={IMAGES.PLUS} style = {{height:32, width:32, tintColor: focused ? 'blue': 'grey'}}/>
           ),
         }}
       />
