@@ -5,85 +5,56 @@ import EmptyList from '../components/emptyList';
 import BackButton from '../components/backButton';
 import { RootStackParamList } from '../types/navigation';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import ExpenseCard from '../components/expensecard';
+import { useSelector } from 'react-redux';
+import { selectExpensesByTripId } from '../store/selectors';
 
-var items = [
-  {
-    id: 1,
-    place: 'Goa',
-    country: 'India'
-  },
-  {
-    id: 2,
-    place: 'Shimla',
-    country: 'India'
-  },
-  {
-    id: 3,
-    place: 'New york',
-    country: 'United States'
-  },
-  {
-    id: 4,
-    place: 'London',
-    country: 'United Kingdom'
-  }
-]
-
-type Props = NativeStackNavigationProp<RootStackParamList>;
+type Props = NativeStackNavigationProp<RootStackParamList, 'TripExpenses'>;
 
 export default function TripExpensesScreen() {
     const navigation = useNavigation<Props>();
-  return (
-    <View style = {{backgroundColor:'#fff', paddingHorizontal:15}}>
-        <BackButton />
-        <View style = {{alignItems:'center'}}>
+    const route = useRoute();
+    const { place, country, id: tripId } = route.params as { place: string; country: string; id: string };
+    const expenses = useSelector(selectExpensesByTripId(tripId));
+
+    const handleAddExpense = () => {
+      navigation.navigate('AddExpenses', { tripId });
+    };
+    return (
+      <View style = {{backgroundColor:'#fff', paddingHorizontal:15}}>
+          <View style = {{position:'absolute', zIndex: 1, top: 10, left: 6}}>
+              <BackButton />
+          </View>
+          <View style={{paddingTop: 4, marginBottom: 20}}>
+              <Text style = {{textAlign:'center', fontWeight:'600', fontSize:24}}>{place}</Text>
+              <Text style = {{textAlign:'center', color: '#666', fontSize: 16}}>{country}</Text>
+          </View>
+          <View style = {{alignItems:'center'}}>
             <Image 
-            style={{ height:400, width:400}} 
+            style={{ height:400, width:400}}
             source={randomImage()}/>
-        </View>
-        <View style={{}}>
-            <View style = {{marginBottom:10, flexDirection:'row', marginRight:2, justifyContent:'space-between'}}>
-            <Text style={{ fontSize: 22, fontWeight: 'bold' }}>Expenses</Text>
-            <TouchableOpacity onPress={() => navigation.navigate('AddExpenses')} style = {{padding:10, paddingHorizontal:10, backgroundColor: '#f0f8ff', borderRadius: 20}}>
-                <Text>Add Expense</Text>
-            </TouchableOpacity>
-            </View>
-            <View style = {{height:500}}>
-            <FlatList
-                data={items}
-                numColumns={2}
-                ListEmptyComponent={<EmptyList/>}
-                keyExtractor={item => item.id.toString()}
-                showsVerticalScrollIndicator={false}
-                columnWrapperStyle = {{
-                justifyContent:'space-between'
-                }}
-                style = {{marginHorizontal:5,}}
-                renderItem={({ item }) => {
-                return (
-                    <TouchableOpacity
-                    style={{backgroundColor: 'white', marginBottom: 10, padding: 25, borderRadius: 20, shadowColor: 'black',
-                    shadowOpacity: 0.26,
-                    shadowOffset: { width: 0, height: 2 },
-                    shadowRadius: 10,
-                    elevation: 3
-                    }} >
-                    <View>
-                        <Image style={{ height: 150, width: 150, marginBottom: 2 }}
-                        source={randomImage()}
-                        />
-                        <Text style={{ fontWeight: 'bold', fontSize: 17 }} >{item.place}</Text>
-                        <Text style={{ fontSize: 15, fontWeight: '300' }}>{item.country}</Text>
-                    </View>
-                    </TouchableOpacity>
-                )
-                }}
-            />
-        </View>
+          </View>
+          <View style = {{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+              <Text style = {{fontSize:20, fontWeight:'600'}}>Expenses</Text>
+              <TouchableOpacity 
+                onPress={handleAddExpense}
+                style = {{padding:10, paddingHorizontal:15, backgroundColor:'white', borderWidth:0.2, borderColor:'grey', borderRadius:20}}>
+                  <Text style = {{color:'grey', fontWeight:'600'}}>Add Expense</Text>
+              </TouchableOpacity>
+          </View>
+          <View style = {{height:500}}>
+              <FlatList 
+                  data={expenses}
+                  ListEmptyComponent={<EmptyList />}
+                  showsVerticalScrollIndicator={false}
+                  renderItem={({item}) => (
+                      <ExpenseCard expense={item} />
+                  )}
+              />
+          </View>
       </View>
-    </View>  
-  )
+    );
 }
 
 const styles = StyleSheet.create({})

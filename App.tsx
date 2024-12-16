@@ -1,12 +1,16 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Navigation from './src/navigation';
+import { store } from './src/store/store';
+import { Provider } from 'react-redux';
 
-const Tab = createBottomTabNavigator();
+
 
 const App =() => {
   return (
-    <Navigation />
+    <Provider store={store}>
+      <Navigation />
+    </Provider>
   );
 }
 

@@ -1,49 +1,41 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-export default function ExpenseCard({item}) {
+export default function ExpenseCard({ expense }) {
   return (
-    <TouchableOpacity style={styles.container}>
-      <View>
-        <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.category}>{item.category}</Text>
+    <View style={styles.container}>
+      <View style={styles.row}>
+        <View>
+          <Text style={styles.title}>{expense.title}</Text>
+          <Text style={styles.category}>{expense.category}</Text>
+        </View>
+        <Text style={styles.amount}>₹{expense.amount}</Text>
       </View>
-      <View>
-        <Text style={styles.amount}>${item.amount}</Text>
-      </View>
-    </TouchableOpacity>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
-    padding: 15,
-    borderRadius: 15,
+    backgroundColor: '#f0f8ff',
+    padding: 10,
+    borderRadius: 10,
+    marginVertical: 5,
+  },
+  row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 10,
-    elevation: 2,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
   },
   title: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: '600',
-    marginBottom: 5,
   },
   category: {
-    fontSize: 14,
-    color: 'gray',
+    color: 'grey',
   },
   amount: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: '600',
   }
 })

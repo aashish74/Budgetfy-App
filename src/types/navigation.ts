@@ -6,10 +6,12 @@ export type RootStackParamList = {
   Expenses: undefined;
   Settings: undefined;
   ExpensesMain: undefined;
-  AddExpenses: undefined;
   MainTabs: undefined;
   TripExpenses: {
     place: string;
     country: string;
   }; 
+  AddExpenses: {
+    tripId: string;
+  };
 };

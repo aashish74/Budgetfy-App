@@ -6,34 +6,14 @@ import EmptyList from '../components/emptyList';
 import { useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../types/navigation';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-
-var items = [
-  {
-    id: 1,
-    place: 'Goa',
-    country: 'India'
-  },
-  {
-    id: 2,
-    place: 'Shimla',
-    country: 'India'
-  },
-  {
-    id: 3,
-    place: 'New york',
-    country: 'United States'
-  },
-  {
-    id: 4,
-    place: 'London',
-    country: 'United Kingdom'
-  }
-]
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/store';
 
 type Props = NativeStackNavigationProp<RootStackParamList>;
 
 export default function HomeScreen() {
   const navigation = useNavigation<Props>();
+  const trips = useSelector((state: RootState) => state.trips.trips);
 
   return (
     <View style = {{backgroundColor: '#fff'}}>
@@ -60,14 +40,13 @@ export default function HomeScreen() {
         </View>
         <View style = {{height:500}}>
         <FlatList
-            data={items}
+            data={trips}
             numColumns={2}
             ListEmptyComponent={<EmptyList />}
-            keyExtractor={item => item.id.toString()}
+            // keyExtractor={item => item.id.toString()}
+            contentContainerStyle={{ padding: 10 }}
+            columnWrapperStyle={{ gap: 10 }}
             showsVerticalScrollIndicator={false}
-            columnWrapperStyle = {{
-              justifyContent:'space-between'
-            }}
             style = {{marginHorizontal:5,}}
             renderItem={({ item }) => {
               return (

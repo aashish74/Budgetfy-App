@@ -2,23 +2,46 @@ import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'reac
 import React, { useState } from 'react'
 import BackButton from '../components/backButton'
 import IMAGES from '../assets/images'
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { categories } from '../components/categories';
+import { useDispatch } from 'react-redux';
+import { addExpense } from '../store/expenseSlice';
+import { RootStackParamList } from '../types/navigation';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+
+type Props = NativeStackNavigationProp<RootStackParamList>;
 
 export default function AddExpensesScreen() {
   const[title, setTitle] = useState('');
   const[amount, setAmount] = useState('');
   const[category, setCategory] = useState('');
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<Props>();
+  const dispatch = useDispatch();
+  const route = useRoute();
+  const { tripId } = route.params as { tripId: string };
 
   const handleDone = () => {
-    if(title && amount && category){
-      navigation.goBack();
-    }else{
+    if (!title || !amount || !category) return;
 
-    }
-  }
+   const expenseData = {
+     id: Date.now().toString(),
+     title,
+     amount: parseFloat(amount),
+     category,
+     date: new Date().toISOString()
+   };
+
+   dispatch(addExpense({ tripId, expense: expenseData }));
+   
+   // Clear all fields
+   setTitle('');
+   setAmount('');
+   setCategory('');
+   
+   // Navigate back to trip expenses screen
+   navigation.goBack();
+ };
 
   return (
     <View style = {{backgroundColor:'#fff', flex:1, }}>

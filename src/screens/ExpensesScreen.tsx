@@ -4,21 +4,25 @@ import IMAGES from '../assets/images';
 import { useNavigation, CommonActions } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types/navigation';
+import { useDispatch } from 'react-redux';
+import { addTrip } from '../store/tripSlice';
 
 const ExpensesScreen = () => {
   const [place, setPlace] = useState('');
   const [country, setCountry] = useState('');
   
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const dispatch = useDispatch();
 
   const handleNext = () => {
     if(place && country){
+      dispatch(addTrip({ place, country }));
       // Navigate to Home tab
-    navigation.dispatch(
-      CommonActions.navigate({
-        name: 'Home'
-      })
-    );
+      navigation.dispatch(
+        CommonActions.navigate({
+          name: 'Home'
+        })
+      );
     }else{
 
     }
