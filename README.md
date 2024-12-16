@@ -8,7 +8,6 @@ A React Native mobile application for tracking travel expenses and managing trip
 - 🌍 Organize expenses by location (country and state/city)
 - 📊 Categorize expenses
 - 💰 Monitor spending with detailed expense cards
-- 🔐 User authentication (Sign In/Sign Up)
 - 📱 Bottom tab navigation
 - 🎨 Modern UI with custom components
 
@@ -102,5 +101,10 @@ ExpenseTracker3/
 - Responsive layout
 - Custom expense cards
 - Category selection with visual feedback
+
+### Demo of App
+
+
+https://github.com/user-attachments/assets/e08fba1c-b536-43b3-bee0-9a9883e9e531
 
 
