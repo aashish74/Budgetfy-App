@@ -17,7 +17,6 @@ A React Native mobile application for tracking travel expenses and managing trip
 - TypeScript
 - Redux Toolkit for state management
 - React Navigation (Bottom Tabs & Stack)
-- Vector Icons
 - Custom Components
 
 ## Prerequisites
