@@ -34,7 +34,6 @@ A React Native mobile application for tracking travel expenses and managing trip
 
 ```bash
 git clone https://github.com/yourusername/ExpenseTracker3.git
-cd ExpenseTracker3
 ```
 
 2. Install dependencies:
