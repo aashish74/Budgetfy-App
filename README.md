@@ -1,5 +1,4 @@
-# Budgetfy (ExpenseTracker3)
-
+# Budgetfy
 A React Native mobile application for tracking travel expenses and managing trip budgets. Built with React Native, Redux Toolkit, and TypeScript.
 
 ## Features
