@@ -31,7 +31,7 @@ A React Native mobile application for tracking travel expenses and managing trip
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/ExpenseTracker3.git
+git clone https://github.com/yourusername/Budgetfy-App.git
 ```
 
 2. Install dependencies:
